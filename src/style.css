@@ -1,0 +1,326 @@
+/* Base Resets and Fonts */
+@font-face {
+  font-family: 'Angella White';
+  src: url('/fonts/Angella White Personal Use Only.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  /* Romantic cohesive sunset/dusty rose gradient background */
+  background: linear-gradient(135deg, #f5e3e6 0%, #d9e4f5 100%);
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Fireworks Canvas */
+#fireworks-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none; /* Let clicks pass through */
+}
+
+/* Scrapbook Container */
+.scrapbook-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+/* Polaroid Base Styles */
+.polaroid {
+  position: absolute;
+  background: #fcfcfc;
+  padding: 12px 12px 60px 12px;
+  box-shadow: 2px 8px 20px rgba(0, 0, 0, 0.15), 0 0 40px rgba(0,0,0,0.05) inset;
+  border-radius: 2px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
+
+.polaroid:hover {
+  transform: scale(1.02) translateY(-10px) rotate(0deg) !important;
+  box-shadow: 5px 15px 30px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0,0,0,0.05) inset;
+  z-index: 20;
+}
+
+.polaroid .photo {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #222;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.15) contrast(1.05); /* Softer sepia effect */
+  transition: filter 0.5s ease;
+}
+
+.polaroid:hover img {
+  filter: sepia(0) contrast(1.1);
+}
+
+/* Tape Adhesives */
+.tape {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  backdrop-filter: blur(2px);
+  z-index: 5;
+  border-radius: 2px;
+}
+
+.tape::after, .tape::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-image: linear-gradient(to bottom, transparent 50%, rgba(255,255,255,0.3) 50%);
+  background-size: 100% 4px;
+}
+.tape::before { left: -2px; }
+.tape::after { right: -2px; }
+
+/* Specific Placements for Photos */
+.p1 {
+  width: 250px;
+  height: 290px;
+  top: 4%;
+  left: 3%;
+  transform: rotate(-10deg);
+}
+.p1 .tape-1 {
+  width: 70px;
+  height: 22px;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(5deg);
+}
+
+.p2 {
+  width: 280px;
+  height: 230px;
+  top: 4%;
+  right: 3%;
+  transform: rotate(12deg);
+}
+.p2 .tape-2 {
+  width: 80px;
+  height: 25px;
+  top: -15px;
+  right: 20px;
+  transform: rotate(-25deg);
+  background-color: rgba(240, 230, 210, 0.7); /* slightly yellowish tape */
+}
+
+.p3 {
+  width: 220px;
+  height: 260px;
+  bottom: 4%;
+  left: 3%;
+  transform: rotate(6deg);
+}
+.p3 .tape-3 {
+  width: 65px;
+  height: 22px;
+  top: -10px;
+  left: -15px;
+  transform: rotate(-40deg);
+}
+
+.p4 {
+  width: 260px;
+  height: 210px;
+  bottom: 4%;
+  right: 3%;
+  transform: rotate(-6deg);
+}
+.p4 .tape-4 {
+  width: 70px;
+  height: 22px;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+}
+
+.p5 {
+  width: 240px;
+  height: 250px;
+  top: 45%;
+  left: 8%;
+  transform: rotate(-4deg);
+  z-index: 1; 
+}
+.p5 .tape-5 {
+  width: 65px;
+  height: 24px;
+  top: -12px;
+  left: 40%;
+  transform: rotate(-8deg);
+}
+
+.p6 {
+  width: 250px;
+  height: 270px;
+  top: 50%;
+  right: 8%;
+  transform: rotate(9deg);
+  z-index: 1;
+}
+.p6 .tape-6 {
+  width: 75px;
+  height: 22px;
+  top: -10px;
+  right: 15px;
+  transform: rotate(12deg);
+}
+
+/* Torn Heart Embellishment */
+.torn-heart {
+  position: absolute;
+  top: 25%;
+  right: 28%;
+  width: 160px;
+  height: 160px;
+  transform: rotate(20deg);
+  z-index: 3;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+}
+
+.torn-heart img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: path('M100,30 C60,-20 0,10 0,70 C0,130 100,190 100,190 C100,190 200,130 200,70 C200,10 140,-20 100,30 Z');
+  /* Added a torn edge effect via rough borders visually simulated if possible, but clip-path is cleaner for the heart */
+  pointer-events: none;
+}
+
+/* Center Piece / Main Greeting */
+.center-piece {
+  position: relative;
+  width: 400px;
+  background: #fdfbf7;
+  padding: 15px 15px 95px 15px; 
+  box-shadow: 8px 18px 50px rgba(0,0,0,0.25); /* softer, wider shadow */
+  transform: rotate(-2deg); /* very slight angle */
+  z-index: 10;
+  border-radius: 4px;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.center-piece:hover {
+  transform: rotate(1deg) scale(1.04);
+}
+
+.pushpin {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle at 30% 30%, #f7f7f7, #d4d4d4);
+  border-radius: 50%;
+  box-shadow: 2px 5px 5px rgba(0,0,0,0.3), inset -2px -2px 5px rgba(0,0,0,0.2);
+  z-index: 15;
+}
+.pushpin::after {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 50%;
+}
+
+.main-photo {
+  width: 100%;
+  height: 420px;
+  background: #111;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.main-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.05) contrast(1.05); /* very subtle on the main photo */
+}
+
+.text-container {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  transform: rotate(-2deg);
+}
+
+.script-text {
+  font-family: 'Homemade Apple', cursive;
+  color: #3b3a36; /* slightly tinted text color */
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.9);
+}
+
+.script-text.title {
+  font-family: 'Angella White', 'Dancing Script', cursive;
+  font-size: 72px; /* Increased size to fit the beautiful handwritten style */
+  font-weight: normal;
+  color: #bf4063; /* deeper aesthetic pink */
+  margin-top: 5px;
+  line-height: 1.1;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .p1, .p2, .p3, .p4, .p5, .p6, .torn-heart {
+    transform: scale(0.6) !important;
+  }
+  .center-piece {
+    width: 85%;
+    max-width: 380px;
+  }
+  .main-photo {
+    height: 380px;
+  }
+}
